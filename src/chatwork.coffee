@@ -34,7 +34,10 @@ class Chatwork extends Adapter
         name: account.name
         avatarImageUrl: account.avatar_image_url
         room: roomId
-      @receive new TextMessage user, body, id 
+	
+      message = new TextMessage user, body, id
+      message.send_time = sendAt
+      @receive  message
 
     @bot = bot
 
