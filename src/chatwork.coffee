@@ -30,13 +30,11 @@ class Chatwork extends Adapter
       bot.Room(roomId).Messages().listen()
 
     bot.on 'message', (roomId, id, account, body, sendAt, updatedAt) =>
-      console.log("sendAt",sendAt);
       user = @robot.brain.userForId account.account_id,
         name: account.name
         avatarImageUrl: account.avatar_image_url
         room: roomId
-	send_time: sendAt || 0
-
+	sendTime: sendAt
       @receive new TextMessage user, body, id 
 
     @bot = bot
